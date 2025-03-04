@@ -2,6 +2,8 @@ import Search from "./components/Search.jsx";
 import {useState, useEffect} from "react";
 import Loader from "./components/Loader.jsx";
 import MovieCard from "./components/MovieCard.jsx";
+import {useDebounce} from "react-use";
+
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
@@ -17,6 +19,11 @@ const App = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [movieList, setMovieList] = useState([]);
     const [Loading, setLoading] = useState(false);
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+    // the debounce delays  the input for some time
+    // and debouncing the search allow to not make a request for each character that is typed in the search field
+    //by waiting the user to stop typing for specified period in milliseconds
+    useDebounce(()=> setDebouncedSearchTerm(searchTerm), 500,[searchTerm]);
 
     const fetchMovies = async (query = '') => {
         // while we are in the process of fetching we can do this
@@ -48,8 +55,8 @@ const App = () => {
     }
     // we are calling the fetchmovies() function only at our first page load
     useEffect(() => {
-        fetchMovies(searchTerm)
-    },[searchTerm])
+        fetchMovies(debouncedSearchTerm)
+    },[debouncedSearchTerm])
 
     return (
        <main>
