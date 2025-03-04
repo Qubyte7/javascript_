@@ -1,7 +1,10 @@
 import Search from "./components/Search.jsx";
 import {useState, useEffect} from "react";
+import Loader from "./components/Loader.jsx";
+import MovieCard from "./components/MovieCard.jsx";
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
+
 const API_OPTIONS = {
     method: 'GET',
     headers:{
@@ -26,13 +29,15 @@ const App = () => {
                 throw new Error("Could not fetch movies from API");
             }
             const data = await response.json();
+            console.log(data)
             if(data.Response === 'False'){
                 setErrorMessage(data.Error || 'Failed to fetch movies');
                 setMovieList([])
                 return;
             }
             // we are seeting our movielist with data we got from the api
-            setMovieList(data.result || [])
+            // here we are looping through each data in the results returned and we filter for the one with adult == false
+            setMovieList(data.results.filter((res)=>!res.adult) || [])
         }catch(e){
             console.error("Error fetching Movies : "+ e);
             setErrorMessage("Error fetching Movies : "+e)
@@ -44,19 +49,27 @@ const App = () => {
     useEffect(() => {
         fetchMovies()
     },[])
+
     return (
        <main>
-           <div className="patter">
+           <div className="pattern">
                <div className="wrapper">
                    <header>
                        <img src="/hero.png" alt="Hero Banner"/>
                        <h1> Find <span className="text-gradient">Movies</span> you'll enjoy without Hassle</h1>
-                       <Search searchTerm={searchTerm} setsearchTerm={setSearchTerm()} />
+                       <Search searchTerm={searchTerm} setsearchTerm={setSearchTerm} />
                    </header>
                    <section className="all-movies">
-                       {errorMessage && <p className="error-message">{errorMessage}</p>}
+                       <h2 className="mt-[40px]"> All movies</h2>
+                       {Loading ? <Loader/> :
+                       errorMessage ? (<p className="text-red-50">{errorMessage}</p>):
+                           (<ul>
+                               {movieList.map((movie)=>(
+                                   <MovieCard key={movie.id} movie = {movie} />
+                               ))}
+                           </ul>
+                       )}
                    </section>
-
                </div>
            </div>
        </main>
