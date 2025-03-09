@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.auth_page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.login{
+    width: 50%;
+
+}
+
+.signup{
+    background: #030014;
+    width: 50%;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
