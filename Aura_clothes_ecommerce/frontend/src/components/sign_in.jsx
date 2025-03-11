@@ -5,7 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const SignIn = () => {
     return (
-        <div className="auth_page">
+        <div className="auth_page md:flex md:flex-col">
             <div className="login_page">
                 <div className="flex flex-row gap-15">
                     <img src="/images/logo_black.svg"  alt="aura logo"/>
@@ -23,7 +23,6 @@ const SignIn = () => {
                     </form>
                 </div>
             </div>
-
             <div className="signup_page">
             <div className="flex flex-row gap-15">
                     <img src="/images/logo_white.svg"  alt="aura logo"/>

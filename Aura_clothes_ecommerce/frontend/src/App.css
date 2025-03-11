@@ -15,6 +15,12 @@
     justify-content: space-between;
     height: 100vh;
 }
+@media (max-width=760px){
+    .auth_page{
+        display:none !important;
+        flex-direction: column !important;
+    }
+}
 
 .auth_form{
     width: 70%;
@@ -77,3 +83,6 @@ button{
 
 
 
+.card{
+padding: 1.5rem;
+}
