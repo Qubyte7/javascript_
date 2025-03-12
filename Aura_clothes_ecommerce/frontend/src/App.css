@@ -81,8 +81,10 @@ button{
     
 }
 
-
-
 .card{
 padding: 1.5rem;
+}
+
+.aura-header{
+    margin: 2rem 0rem;
 }
