@@ -10,7 +10,7 @@ const Update = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className="w-[50vw] shadow-2xl update-form rounded-lg">
+      <div className="w-[50vw] shadow-2xl update-form rounded-lg max-lg:w-[80vw] max-sm:w-[100vw]">
         <div className="aura-header flex flex-row gap-15 justify-center ">
           <img src="/images/logo_black.svg" alt="aura logo" className='w-[3rem]' />
           <h1 className='text-5xl font-display-crash-medium'>Aura</h1>

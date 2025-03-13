@@ -13,7 +13,7 @@ const Profile = () => {
                 <img src="/images/logo_black.svg"  alt="aura logo" className='w-[3rem]'/>
                 <h1 className='text-5xl font-display-crash-medium'>Aura</h1>
             </div>
-            <div className='profile-content flex flex-row justify-center items-center gap-20'>
+            <div className='profile-content flex flex-row justify-center items-center gap-20 max-lg:flex-col'>
                 <div className='grid grid-cols-1 gap-5'>
                 <img src='/images/profile_img.jpg' alt='profile img' className='w-[20rem] h-[20rem] rounded-md'/>
                 <button className='bg-black w-[20rem] h-[3rem] rounded-md text-white flex justify-center items-center'><MdOutlineFileUpload/></button>

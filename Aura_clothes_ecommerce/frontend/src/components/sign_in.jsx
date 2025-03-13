@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const SignIn = () => {
     return (
-        <div className="auth_page md:flex md:flex-col">
+        <div className="auth_page flex flex-row gap-10 h-full max-md:flex-col">
             <div className="login_page">
                 <div className="flex flex-row gap-15">
                     <img src="/images/logo_black.svg" alt="aura logo" />
@@ -23,7 +23,7 @@ const SignIn = () => {
                     </form>
                 </div>
             </div>
-            <div className="signup_page">
+            <div className="signup_page min-h-screen">
                 <div className="flex flex-row gap-15">
                     <img src="/images/logo_white.svg" alt="aura logo" />
                     <h1 className='text-7xl font-display-crash-medium'>Aura</h1>
@@ -31,6 +31,7 @@ const SignIn = () => {
                 <p className='font-poppins text-4xl'>Signup</p>
                 <div className="auth_form">
                     <form className="flex flex-col gap-5">
+                        <input type="text" placeholder="username" />
                         <input type="email" placeholder="Email" />
                         <input type="password" placeholder="Password" />
                         <p className='flex align-middle justify-center '>or</p>

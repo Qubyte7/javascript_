@@ -30,18 +30,18 @@
     box-sizing: border-box;
 }
 /* over all authentication form page styles */
-.auth_page{
+/* .auth_page{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 100vh;
 }
-@media (max-width=760px){
+
+@media (min-width=760px){
     .auth_page{
-        display:none !important;
         flex-direction: column !important;
     }
-}
+} */
 
 .auth_form{
     width: 70%;

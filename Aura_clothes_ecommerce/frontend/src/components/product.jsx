@@ -14,8 +14,8 @@ const Product = () => {
         />
         <h1 className="text-5xl font-display-crash-medium">Aura</h1>
       </div>
-      <div className="product-content grid grid-cols-2 place-content-center gap-15 ">
-        <div className="bg-[#EFEFEF] rounded-lg h-[70vh] flex items-center justify-center">
+      <div className="product-content grid grid-cols-2 place-content-center gap-30 max-lg:gap-5  max-lg:grid-cols-1"> 
+        <div className="bg-[#EFEFEF] rounded-lg max-sm:h-[30vh] max-md:h-[50vh] h-[70vh] flex items-center justify-center">
           <img src="/images/product.png" alt="product image" className=""/>
         </div>
         <Descriprion/>

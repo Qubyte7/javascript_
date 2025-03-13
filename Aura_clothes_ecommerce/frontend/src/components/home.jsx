@@ -23,7 +23,7 @@ const Home = () => {
       <img src="/images/poster.png" alt="poster image" className="w-[83vw]" />
       <Search_box />
       <p className="font-lexend text-3xl font-bold">Our products</p>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 gap-6 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
         <Card />
         <Card />
         <Card />
