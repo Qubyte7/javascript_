@@ -40,7 +40,3 @@
     src: url("./assets/fonts/display_clash_otf/ClashDisplay-Bold.otf") format("opentype");
 }
 
-@font-face {
-    font-family: 'display_crash_normal';
-    src: url("./assets/fonts/display_clash_otf/ClashDisplay-Extralight.otf") format("opentype");
-}

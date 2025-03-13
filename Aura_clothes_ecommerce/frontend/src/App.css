@@ -2,6 +2,27 @@
     font-family: 'display_crash_normal';
     src: url("/fonts/display_clash_otf/ClashDisplay-Regular.otf") format("opentype");
 }
+@font-face {
+    font-family: 'display_crash_light';
+    src: url("./assets/fonts/display_clash_otf/ClashDisplay-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'display_crash_medium';
+    src: url("./assets/fonts/display_clash_otf/ClashDisplay-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'display_crash_semibold';
+    src: url("./assets/fonts/display_clash_otf/ClashDisplay-Semibold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'display_crash_bold';
+    src: url("./assets/fonts/display_clash_otf/ClashDisplay-Bold.otf") format("opentype");
+}
+
+
 
 *{
     margin: 0;
@@ -87,4 +108,30 @@ padding: 1.5rem;
 
 .aura-header{
     margin: 2rem 0rem;
+}
+
+.product-content{
+    margin: 0rem 10rem;
+}
+.filter{
+    padding: 0.1rem 1.2rem;
+}
+/* font-poppins font-semibold text-xl */
+.title{
+    font-family: 'display_crash_medium', sans-serif;
+    font-size: xx-large;
+}
+
+.subtitle{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: x-large;    
+}
+
+.update-form{
+    padding: 4rem;
+}
+
+.update-form button{
+    margin-top: 2rem;
 }
