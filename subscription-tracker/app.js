@@ -6,22 +6,26 @@ import  subscriptionRouter  from './routes/subscription.routes.js';
 import connectToDatabase from './database/mongodb.js';
 import  errorMidlleware from './middleware/error.middleware.js';
 import cookieParser from 'cookie-parser';
+import arcjetMiddleWare from './middleware/arcjet.middleware.js';
 
 const app = express();
 
 
 
-app.use(errorMidlleware);
+
 // built in express middleware
 app.use(express.json()); // enable to handle json responses
 app.use(express.urlencoded({extended:false})); // handle html forms
 app.use(cookieParser());
 
-
 //routes
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/subscriptions',subscriptionRouter);
+
+// custom defined middlewares
+app.use(errorMidlleware);
+app.use(arcjetMiddleWare);
 
  app.get('/', (req, res) => {
      res.send('welcome to the wizards page');
