@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signIn,signUp,signout } from "../controllers/auth.controller";
+import { signIn,signUp,signout } from "../controllers/auth.controller.js";
 
 
 
