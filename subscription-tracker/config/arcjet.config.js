@@ -13,6 +13,7 @@ const aj = arcjet({
       detectBot({
         mode: "LIVE", // Blocks requests. Use "DRY_RUN" to log only
         // Block all bots except the following
+
         allow: [
           "CATEGORY:SEARCH_ENGINE", // Google, Bing, etc
           // Uncomment to allow these other common bot categories
@@ -22,7 +23,7 @@ const aj = arcjet({
         ],
       }),
       // Create a token bucket rate limit. Other algorithms are supported.
-      tokenBucket({
+      tokenBucket({ 
         mode: "LIVE",
         refillRate: 5, // Refill 5 tokens per interval
         interval: 10, // Refill every 10 seconds

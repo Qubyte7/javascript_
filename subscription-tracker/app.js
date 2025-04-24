@@ -18,14 +18,15 @@ app.use(express.json()); // enable to handle json responses
 app.use(express.urlencoded({extended:false})); // handle html forms
 app.use(cookieParser());
 
+// custom defined middlewares
+app.use(errorMidlleware);
+app.use(arcjetMiddleWare);
+
 //routes
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/subscriptions',subscriptionRouter);
 
-// custom defined middlewares
-app.use(errorMidlleware);
-app.use(arcjetMiddleWare);
 
  app.get('/', (req, res) => {
      res.send('welcome to the wizards page');
