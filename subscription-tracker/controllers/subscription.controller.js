@@ -1,12 +1,26 @@
+import { SERVER_URL } from "../config/env.js";
+import { workflowClient } from "../config/upstash.js";
 import Subscription from "../models/subscription.model.js";
 
 
-export const createSubscription = (req,res,next)=>{
+export const createSubscription = async (req,res,next)=>{
     try {
         const subscription =  new Subscription.create({
             ...req.body,
             user: req.user._id, // this (user) comes from our request from the authorize middleware ( check subscription post route )
         })
+        // payment reminder timer triggering
+        await workflowClient.trigger({
+            url: `${SERVER_URL}/api/v1/workflow/reminder`,
+            body:{
+                subscriptionId: subscription.id,
+            },
+            headers:{
+                'content-type':'application/json',
+            },
+            retries:0,
+        })
+
         res.status(201).json({
             success:true,
             data:subscription
