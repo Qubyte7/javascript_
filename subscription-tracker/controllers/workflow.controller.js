@@ -5,6 +5,7 @@
 import { createRequire} from 'module';
 import Subscription from '../models/subscription.model';
 import dayjs from 'dayjs';
+import { sendReminderEmail } from '../utils/send-email.js';
 const require = createRequire(import.meta.url);
 
 // so we are now ready to use require 
@@ -31,9 +32,9 @@ export const sendReminders = serve(async(context)=>{
     for (const daysBefore of REMINDERS){
         const reminderDate =  renewalDate.subtract(daysBefore, 'day');
         if(reminderDate.isAfter(dayjs())){ // daysjs() ==> returns the current date 
-            await sleepUntilReminder(context,`Reminder ${daysBefore} days before`,reminderDate);
+            await sleepUntilReminder(context,`${daysBefore} days before reminder`,reminderDate);
         }
-        await triggerReminder(context,`Reminder ${daysBefore} days before`);
+        await triggerReminder(context,`${daysBefore} days before reminder`,subscription,);
     }
 
 });
@@ -52,9 +53,17 @@ const sleepUntilReminder = async(context,label,date)=>{
 }
 
 
-const triggerReminder =  async (context,label) => {
-    return await context.run(label,()=>{
+const triggerReminder =  async (context,label,subscription) => {
+    return await context.run(label,async()=>{
         console.log(`Trigger ${label} reminder`);
         // send email, SMS, push notification etc.
+        await sendReminderEmail({
+            to:subscription.user.email,
+            type: label,
+            subscription,
+             
+    })
+
+
     })
 }
