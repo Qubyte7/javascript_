@@ -1,0 +1,9 @@
+npm init -y
+npm i --save-dev prisma typescript ts-node @types/node nodemon
+npx prisma init --datasource-provider postgresql
+
+npx prisma migrate dev --name init
+
+npx install @prisma/client // installing a client to interact with our database schemas
+
+npx prisma generate // if you need to regenerate a prisma client 
