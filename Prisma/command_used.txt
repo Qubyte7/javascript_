@@ -1,2 +1,17 @@
 npm init -y 
 npm install typescript tsx @types/node --save-dev
+
+npx tsc init // initialising typescript
+
+npm install prisma --save-dev
+
+//initialising Prisma ORM 
+npx prisma init --datasource-provider postgresql --output ../generated/prisma
+
+// making migration
+npx prisma migrate dev --name init
+
+
+//installing prisma client
+npm install @prisma/client
+
