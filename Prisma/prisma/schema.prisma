@@ -19,16 +19,26 @@ model Author{
   id Int @id @default(autoincrement())
   name String @db.VarChar(100)
   age Int?
-  email String @unique
+  email String @unique 
+  profile Profile?
   books Book[]
 
   @@map("author")
 }
 
+model Profile{
+  id Int @id @default(autoincrement())
+  author Author @relation(fields: [authorEmail], references: [email])
+  authorEmail String @unique
+  instagram String?
+  github String? @unique
+  @@map("profile")
+}
+
 model Book{
   id Int @id @default(autoincrement())
   name String
-  user Author? @relation(fields: [authorId], references: [id])
+  author Author? @relation(fields: [authorId], references: [id])
   authorId  Int?
 
   @@map("book")

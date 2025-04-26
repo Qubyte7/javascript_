@@ -5,11 +5,17 @@ const prisma =  new PrismaClient();
 
 const main = async()=>{
 // creating a author
-    // const author = await prisma.author.create({
-    //     data:{
-    //         name:"Innocent",
-    //         email:"innocent@gmail.com",
-    //  }});
+    const author = await prisma.author.create({
+        data:{
+            name:"byose",
+            email:"byose@gmail.com",
+            profile:{
+                create:{
+                    github: "byoseGT",
+                    instagram: "byose__7002"
+                }
+            }
+     }});
 
 //retrivieing all authors
     const authors = await prisma.author.findMany({
