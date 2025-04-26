@@ -40,6 +40,32 @@ model Book{
   name String
   author Author? @relation(fields: [authorId], references: [id])
   authorId  Int?
+  category CategoryOnBooks[]
 
   @@map("book")
+}
+
+
+model Category{
+  id Int @id @default(autoincrement())
+  categoryname String @unique
+  books CategoryOnBooks[]
+
+  @@map("category")
+}
+
+// relations for books and the categories
+
+model CategoryOnBooks {
+  category Category @relation(fields: [bookCategoryId],references: [id])
+  bookCategoryId Int 
+  // adding corresponding category name
+  categoryName String @map("categoryname") // matches Category.categoryname
+  book Book @relation(fields: [bookId], references: [id])
+  bookId Int
+  //adding corresponding bookname
+  bookName String @map("name")
+
+  @@id([bookCategoryId,bookId])
+  @@map("category_on_book")
 }
