@@ -1,5 +1,5 @@
 npm init -y 
-npm install typescript tsx @types/node --save-dev
+npm install typescript ts-node tsx @types/node --save-dev
 
 npx tsc init // initialising typescript
 
@@ -15,3 +15,9 @@ npx prisma migrate dev --name init
 //installing prisma client
 npm install @prisma/client
 
+//installing nodemon
+npm install nodemon
+
+
+//runing my application 
+npm run dev
