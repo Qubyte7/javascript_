@@ -4,7 +4,7 @@ import prisma from "../config/prisma_client";
 export const createUser = async (req:Request, res:Response,next:NextFunction) => {
     try{
     const {name,email,password,balance} = req.body;
-    const userAlreadyExists = await prisma.client.findUnique({where:{email}})
+    const userAlreadyExists = await prisma.client.findUnique({where:{email:email}})
 
     if(userAlreadyExists){
         return res.status(400).json({
