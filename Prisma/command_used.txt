@@ -1,7 +1,7 @@
 npm init -y 
 npm install typescript ts-node tsx @types/node --save-dev
 
-npx tsc init // initialising typescript
+npx tsc --init // initialising typescript
 
 npm install prisma --save-dev
 
