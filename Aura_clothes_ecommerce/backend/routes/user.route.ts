@@ -1,7 +1,14 @@
 import { Router } from "express";
+import { createUser, getUser , deleteUser, updateUser } from "../controllers/user.contoller";
+import { get } from "http";
+
 
 const userRouter = Router();
-userRouter.get("/", (req, res,next) => res.send("user route"));
+
+userRouter.get("/:id",getUser);
+userRouter.post("/",createUser);
+userRouter.delete("/delete/:id",deleteUser);
+userRouter.put("/update/:id",updateUser);
 
 
 export default userRouter;

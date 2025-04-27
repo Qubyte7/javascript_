@@ -13,6 +13,7 @@ app.use(errorMiddleware);
 
 //routes
 app.use("/aura/api/v1/users",userRouter)
+app.use("/aura/api/v1/products",userRouter)
 
 
 app.listen(PORT, ()=>{
