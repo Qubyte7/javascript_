@@ -7,7 +7,7 @@ const userRouter = Router();
 
 userRouter.get("/:id",getUser);
 userRouter.post("/",createUser);
-userRouter.delete("/delete/:id",deleteUser);
+userRouter.delete("/:id",deleteUser);
 userRouter.put("/update/:id",updateUser);
 
 

@@ -35,13 +35,24 @@ export const createUser = async (req:Request, res:Response,next:NextFunction) =>
 export const getUser = async (req:Request, res:Response,next:NextFunction) => {
     
     try{
-    const {uid} = req.params;
+    const {id} = req.params;
 
+    //validating if UUID is in its correct format
+    if (!id || typeof id !== 'string' || id.length < 20 ) {
+        return res.status(400).json({
+            success: false,
+            message: "Invalid user ID format"
+        });
+    }
+    
     const user = await prisma.client.findUnique({
         where:{
-            id:uid
+            id:id
         }
     })
+    console.log(user);
+    
+
     if(!user){
         return res.status(404).json({
             success:false,
@@ -61,11 +72,11 @@ export const getUser = async (req:Request, res:Response,next:NextFunction) => {
 
 export const deleteUser = async (req:Request, res:Response,next:NextFunction) => {
     try{
-    const {uid} = req.params;
+    const {id} = req.params;
 
     const user = await prisma.client.findUnique({
         where:{
-            id:uid
+            id:id
         }
     })
     if(!user){
@@ -77,7 +88,7 @@ export const deleteUser = async (req:Request, res:Response,next:NextFunction) =>
 
     await prisma.client.delete({
         where:{
-            id:uid
+            id:id
         }
     })
 
@@ -94,10 +105,10 @@ export const updateUser = async (req:Request, res:Response,next:NextFunction) =>
     
     try{
 
-    const {uid} = req.params;
+    const {id} = req.params;
     const {name,email,password,balance} = req.body;
 
-    const doesUserExist = await prisma.client.findUnique({where:{id:uid}})
+    const doesUserExist = await prisma.client.findUnique({where:{id:id}})
     if(!doesUserExist){
         return res.status(404).json({
             success:false,
@@ -107,7 +118,7 @@ export const updateUser = async (req:Request, res:Response,next:NextFunction) =>
 
     const updatedUser = await prisma.client.update({
         where:{
-            id:uid
+            id:id
         },
         data:{
             name:name,

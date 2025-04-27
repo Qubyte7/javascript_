@@ -4,6 +4,7 @@ import { PORT } from "./config/env";
 import userRouter from "./routes/user.route";
 import errorMiddleware from "./middlewares/error.middleware";
 import { error } from "console";
+import productRouter from "./routes/product.route";
 
 const app = Express();
 
@@ -13,7 +14,7 @@ app.use(errorMiddleware);
 
 //routes
 app.use("/aura/api/v1/users",userRouter)
-app.use("/aura/api/v1/products",userRouter)
+app.use("/aura/api/v1/products",productRouter)
 
 
 app.listen(PORT, ()=>{
