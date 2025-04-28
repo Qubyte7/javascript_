@@ -1,31 +1,38 @@
 import { NextFunction, Request, Response } from "express";
 import prisma from "../config/prisma_client";
+import { hashPassword } from "../utils/bcrypt";
+import jwt from "jsonwebtoken";
+import { sendEmail } from "../config/mailer";
 
 export const createUser = async (req:Request, res:Response,next:NextFunction) => {
     try{
     const {name,email,password,balance} = req.body;
-    const userAlreadyExists = await prisma.client.findUnique({where:{email:email}})
+    const clientAlreadyExists = await prisma.client.findUnique({where:{email:email}})
 
-    if(userAlreadyExists){
+    if(clientAlreadyExists){
         return res.status(400).json({
             success:false,
             message:"User already exists"
         })
     }
-
-    const newUser = await prisma.client.create({
+    const hashedPassword = await hashPassword(password);
+    const newClient = await prisma.client.create({
         data:{
             name:name,
             email:email,
-            password:password,
+            password:hashedPassword,
             balance:balance
         }
     })
+        const token = jwt.sign({userId:newClient.id},process.env.JWT_SECRET as string,{expiresIn:"3d"})
 
+       await sendEmail({toEmail: newClient.email})
+       
     res.status(201).json({
         success:true,
         message:"User created successfully",
-        data:newUser
+        data:newClient,
+        token:token
     })
 }catch(err){
     next(err);

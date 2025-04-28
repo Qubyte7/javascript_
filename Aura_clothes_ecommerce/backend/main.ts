@@ -5,6 +5,9 @@ import userRouter from "./routes/user.route";
 import errorMiddleware from "./middlewares/error.middleware";
 import { error } from "console";
 import productRouter from "./routes/product.route";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = Express();
 
