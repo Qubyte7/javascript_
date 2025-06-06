@@ -7,9 +7,15 @@ import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Hero from './components/hero.jsx';
 import Pagenotfound from './components/Pagenotfound.jsx';
 import Update from './components/Update.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
+    const queryClient=new QueryClient()
+    
     return (
+        <QueryClientProvider client={queryClient}>
+            <Toaster/>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Hero/>}/>
@@ -21,6 +27,7 @@ const App = () => {
                 <Route path='/aura/product/1/update' element={<Update/>}/>
             </Routes>
         </BrowserRouter>
+        </QueryClientProvider>
     )
 }
 export default App

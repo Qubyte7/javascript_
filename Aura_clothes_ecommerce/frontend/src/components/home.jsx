@@ -1,8 +1,14 @@
 import React from "react";
 import Card from "./card";
 import Search_box from "./search-box";
+import { useQuery } from "@tanstack/react-query";
+import { useGetAllProduct } from "../hooks/product";
 
 const Home = () => {
+  const {data:products,isLoading:loading}=useGetAllProduct()
+  if(loading){
+    return <div>Loading</div>
+  }
   return (
     <div className=" flex flex-col justify-center items-center gap-7">
       <div className="flex flex-row w-[80vw] items-center justify-between">
@@ -24,14 +30,12 @@ const Home = () => {
       <Search_box />
       <p className="font-lexend text-3xl font-bold">Our products</p>
       <div className="grid grid-cols-4 gap-6 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      {
+        products?.map((product)=>{
+          <Card product={product} />
+        })
+      }
+      
       </div>
     </div>
   );

@@ -6,11 +6,17 @@ import errorMiddleware from "./middlewares/error.middleware";
 import { error } from "console";
 import productRouter from "./routes/product.route";
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 dotenv.config()
 
 const app = Express();
-
+app.use(cors(
+    {
+        origin:"*",
+        credentials:true,
+    }
+))
 //middlewares
 app.use(Express.json());
 app.use(errorMiddleware);

@@ -4,7 +4,7 @@ import { get } from "http";
 import authorize from "../middlewares/auth.middleware";
 
 
-const userRouter = Router();
+const   userRouter = Router();
 
 userRouter.get("/:id",authorize,getUser);
 userRouter.post("/signup/",createUser);
